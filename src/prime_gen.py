@@ -28,7 +28,7 @@ def gera_impar():
         num += 1
     return num
 
-def gera_primo(iteracoes):    
+def gera_primo(iteracoes=40):    
     tentativas = 0
     while True:
         tentativas += 1
