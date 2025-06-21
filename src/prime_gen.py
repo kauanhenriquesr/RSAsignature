@@ -35,5 +35,4 @@ def gera_primo(iteracoes=40):
         candidato = gera_impar()
         
         if miller_rabin(candidato, iteracoes):
-            print(f"Primo encontrado após {tentativas} tentativas")
             return candidato

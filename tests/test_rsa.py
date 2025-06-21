@@ -1,13 +1,20 @@
 import pytest
-from src import criptografa, descriptografa, criptografa_mensagem, descriptografa_mensagem, gera_chave
+from src import criptografa_rsa, descriptografa_rsa, gera_chave
 
 def test_criptografa_e_descriptografa():
     n, e, d = gera_chave()
-    criptografado = criptografa(1234567890, n, e)
-    assert descriptografa(criptografado, n, d) == 1234567890
+    criptografado = criptografa_rsa(1234567890, n, e)
+    assert descriptografa_rsa(criptografado, n, d) == 1234567890
 
-def test_criptografa_mensagem_e_descriptografa_mensagem():
+def test_criptografa_e_descriptografa2():
     n, e, d = gera_chave()
     mensagem = "Hello, World!"
-    criptografado = criptografa_mensagem(mensagem, n, e)
-    assert descriptografa_mensagem(criptografado, n, d) == mensagem
+    for char in mensagem:
+        criptografado = criptografa_rsa(ord(char), n, e)
+        assert descriptografa_rsa(criptografado, n, d) == ord(char)
+
+def test_criptografa_e_descriptografa3():
+    n, e, d = gera_chave()
+    mensagem = "Hello, World!"
+    criptografado = criptografa_rsa(int.from_bytes(mensagem.encode(), 'big'), n, e)
+    assert descriptografa_rsa(criptografado, n, d) == int.from_bytes(mensagem.encode(), 'big')

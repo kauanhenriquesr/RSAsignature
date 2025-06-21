@@ -13,14 +13,8 @@ def gera_chave():
     d = pow(e, -1, z)
     return n, e, d
 
-def criptografa(mensagem, n, e):
+def criptografa_rsa(mensagem, n, e):
     return pow(mensagem, e, n)
 
-def descriptografa(criptograma, n, d):
+def descriptografa_rsa(criptograma, n, d):
     return pow(criptograma, d, n)
-
-def criptografa_mensagem(mensagem, n, e):
-    return [criptografa(ord(char), n, e) for char in mensagem]
-
-def descriptografa_mensagem(criptograma, n, d):
-    return ''.join([chr(descriptografa(char, n, d)) for char in criptograma])
