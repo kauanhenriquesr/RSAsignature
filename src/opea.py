@@ -81,10 +81,10 @@ def decodifica_oaep(em: bytes, label: bytes = b"") -> bytes:
     
     return db[separator_index + 1:]
 
-def criptografa_rsa_oaep(mensagem: bytes, n: int, e: int) -> bytes:
+def criptografa_rsa_oaep(mensagem: bytes, n: int, chaveprivada: int) -> bytes:
     mensagem_codificada = codifica_oaep(mensagem)
-    return criptografa_rsa(int.from_bytes(mensagem_codificada, 'big'), n, e)
+    return criptografa_rsa(int.from_bytes(mensagem_codificada, 'big'), n, chaveprivada)
 
-def descriptografa_rsa_oaep(mensagem: bytes, n: int, d: int) -> bytes:
-    mensagem_descriptografada = descriptografa_rsa(mensagem, n, d)
+def descriptografa_rsa_oaep(mensagem: bytes, n: int, chavepublica: int) -> bytes:
+    mensagem_descriptografada = descriptografa_rsa(mensagem, n, chavepublica)
     return decodifica_oaep(mensagem_descriptografada.to_bytes(256, 'big'))

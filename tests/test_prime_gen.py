@@ -1,4 +1,4 @@
-from src import miller_rabin, gera_impar, gera_primo
+from src.prime_gen import miller_rabin, gera_impar, gera_primo
 import pytest
 
 def test_gera_impar():

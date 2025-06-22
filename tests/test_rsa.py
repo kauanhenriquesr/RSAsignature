@@ -1,5 +1,5 @@
 import pytest
-from src import criptografa_rsa, descriptografa_rsa, gera_chave
+from src.rsa import criptografa_rsa, descriptografa_rsa, gera_chave
 
 def test_criptografa_e_descriptografa():
     n, e, d = gera_chave()

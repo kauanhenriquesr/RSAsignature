@@ -2,18 +2,17 @@ import base64
 from src.sha import calcular_sha3_512
 from src.opea import criptografa_rsa_oaep, descriptografa_rsa_oaep
 
-def assinatura(file_path, n, e, d):
-    print(n, e, d)
+def assinatura(file_path, n, private_key):
     hash = calcular_sha3_512(file_path)
-    print(hash)
-    em = criptografa_rsa_oaep(hash, n, e)
-    print(em)
+    em = criptografa_rsa_oaep(hash, n, private_key)
+    print(f"Hash do arquivo: {hash}")
+    print(f"Mensagem codificada: {em}")
+    print(base64.b64encode(em.to_bytes(256, 'big')).decode(encoding='utf-8'))
     return base64.b64encode(em.to_bytes(256, 'big')).decode(encoding='utf-8')
 
-def verifica(file_path, assinatura, n, e, d):
+def verifica(file_path, assinatura, n, public_key):
     em = base64.b64decode(assinatura)
-    print(em)
     em = int.from_bytes(em, 'big')
-    hash = descriptografa_rsa_oaep(em, n, d)
+    hash = descriptografa_rsa_oaep(em, n, public_key)
     hash_arquivo = calcular_sha3_512(file_path)
     return hash == hash_arquivo
