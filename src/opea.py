@@ -2,10 +2,10 @@ import hashlib
 from src.rsa import criptografa_rsa, descriptografa_rsa
 import random
 
-def xor_bytes(a: bytes, b: bytes) -> bytes:
+def xor_bytes(a, b):
     return bytes(x ^ y for x, y in zip(a, b))
 
-def mgf1(seed_mgf: bytes, mascara_len: int) -> bytes:
+def mgf1(seed_mgf, mascara_len):
     h_len = hashlib.sha3_512().digest_size
     
     if mascara_len > 2**32 * h_len:
@@ -19,7 +19,7 @@ def mgf1(seed_mgf: bytes, mascara_len: int) -> bytes:
 
     return T[:mascara_len]
 
-def codifica_oaep(message: bytes, label: bytes = b"") -> bytes:
+def codifica_oaep(message, label = b""):
     h_len = hashlib.sha3_512().digest_size
 
     if len(message) > 256 - 2 * h_len - 2:
@@ -43,7 +43,7 @@ def codifica_oaep(message: bytes, label: bytes = b"") -> bytes:
 
     return mensagem_codificada
 
-def decodifica_oaep(em: bytes, label: bytes = b"") -> bytes:
+def decodifica_oaep(em, label = b""):
     tamanho_em = len(em)
     h_len = hashlib.sha3_512().digest_size
     
@@ -81,10 +81,10 @@ def decodifica_oaep(em: bytes, label: bytes = b"") -> bytes:
     
     return db[separator_index + 1:]
 
-def criptografa_rsa_oaep(mensagem: bytes, n: int, chaveprivada: int) -> bytes:
+def criptografa_rsa_oaep(mensagem, n, chaveprivada):
     mensagem_codificada = codifica_oaep(mensagem)
     return criptografa_rsa(int.from_bytes(mensagem_codificada, 'big'), n, chaveprivada)
 
-def descriptografa_rsa_oaep(mensagem: bytes, n: int, chavepublica: int) -> bytes:
+def descriptografa_rsa_oaep(mensagem, n, chavepublica):
     mensagem_descriptografada = descriptografa_rsa(mensagem, n, chavepublica)
     return decodifica_oaep(mensagem_descriptografada.to_bytes(256, 'big'))
