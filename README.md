@@ -62,7 +62,7 @@ Este comando verifica se um arquivo não foi alterado e se a assinatura correspo
 
 ### 4\. Obter Ajuda
 
-Se você esquecer os comandos, pode executar o programa sem argumentos ou com as flags de ajuda.
+Se você esquecer os comandos, pode executar o programa sem argumentos ou com as flags de ajuda para obter os usos do programa.
 
   - **Comando**
     ```bash
@@ -72,5 +72,3 @@ Se você esquecer os comandos, pode executar o programa sem argumentos ou com as
     ```bash
     python __main__.py --help
     ```
-  - **O que Acontece?**
-      - Uma mensagem de ajuda simples é exibida, listando os comandos disponíveis e seu uso básico.
