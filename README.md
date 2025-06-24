@@ -39,7 +39,7 @@ Este comando cria uma assinatura digital para um arquivo de sua escolha. Ele usa
       - O programa lê os arquivos `assets/private_key.key` e `assets/n.key`.
       - Ele calcula o hash (SHA3-512) do arquivo especificado (e.g., `assets/teste.txt`).
       - A assinatura é gerada aplicando a operação RSA com a chave privada sobre o hash (utilizando o padding OAEP).
-      - A assinatura resultante é codificada em Base64 e salva no arquivo `assets/assinatura.sig`.
+      - A assinatura resultante é codificada em Base64 e salva no arquivo `<caminho_do_arquivo>_assinatura.sig`.
 
 ### 3\. Verificar uma Assinatura
 
@@ -51,7 +51,7 @@ Este comando verifica se um arquivo não foi alterado e se a assinatura correspo
     ```
   - **Exemplo Prático**
     ```bash
-    python __main__.py -verify assets/teste.txt assets/assinatura.sig
+    python __main__.py -verify assets/teste.txt assets/teste_assinatura.sig
     ```
   - **O que Acontece?**
       - O programa lê os arquivos `assets/public_key.key` e `assets/n.key`.
