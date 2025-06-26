@@ -19,9 +19,9 @@ def verifica_assinatura(file_path, assinatura, n, public_key):
     print("Assinatura:", assinatura)
     print("-"*30)
     if verifica(file_path, assinatura, n, public_key):
-        print("Assinatura válida e corresponde ao arquivo!")
+        print("Assinatura VÁLIDA e corresponde ao arquivo!")
     else:
-        print("Assinatura inválida ou não corresponde ao arquivo.")
+        print("Assinatura INVÁLIDA ou não corresponde ao arquivo.")
 
 def main(args):
     if args == [] or args[0] in ["-h", "--help"]:

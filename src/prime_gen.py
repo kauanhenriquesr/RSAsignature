@@ -29,10 +29,7 @@ def gera_impar():
     return num
 
 def gera_primo(iteracoes=40):    
-    tentativas = 0
     while True:
-        tentativas += 1
         candidato = gera_impar()
-        
         if miller_rabin(candidato, iteracoes):
             return candidato
